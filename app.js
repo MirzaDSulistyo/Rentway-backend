@@ -16,6 +16,8 @@ var products = require('./routes/product');
 var reviews = require('./routes/review');
 var favorites = require('./routes/favorite');
 var currencies = require('./routes/currency');
+var taxes = require('./routes/tax');
+var fees = require('./routes/fee');
 
 var app = express();
 
@@ -57,6 +59,8 @@ app.use('/api/product', products);
 app.use('/api/review', reviews);
 app.use('/api/favorite', favorites);
 app.use('/api/currency', currencies);
+app.use('/api/taxes', taxes);
+app.use('/api/fees', fees);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
