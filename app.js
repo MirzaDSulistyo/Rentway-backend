@@ -4,11 +4,32 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const database = require('./config/database');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var stores = require('./routes/store');
+var categories = require('./routes/category');
+var paymentTypes = require('./routes/paymentType');
+var rentWays = require('./routes/rentway');
 
 var app = express();
+
+// Set up mongoose connection
+var mongoose = require('mongoose');
+//mongoose.connect(process.env.MONGODB_URI || database.database);
+mongoose.connect(process.env.MONGODB_URI || database.localDatabase);
+let db = mongoose.connection;
+
+// Check connection
+db.once('open', function(){
+  console.log('Connected to MongoDB');
+});
+
+// Check for DB errors
+db.on('error', function(err){
+  console.log(err);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,11 +40,15 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/api/users', users);
+app.use('/api/store', stores);
+app.use('/api/category', categories);
+app.use('/api/paymenttype', paymentTypes);
+app.use('/api/rentway', rentWays);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -39,8 +64,11 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  res.status(err.status || 500).send({
+    status: err.status,
+    message: err.message
+  });
+  //res.render('error');
 });
 
 module.exports = app;

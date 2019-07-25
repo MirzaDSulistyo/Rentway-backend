@@ -6,7 +6,7 @@ var router = express.Router();
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('../config'); // get config file
 
-var user = require('../controllers/user');
+var category = require('../controllers/category');
 
 function verifyToken(req, res, next) {
   // check header or url parameters or post parameters for token
@@ -26,20 +26,14 @@ function verifyToken(req, res, next) {
 
 }
 
-router.post('/register', user.register);
+router.post('/new', verifyToken, category.create);
 
-router.post('/registerowner', user.register_owner);
+router.get('/', verifyToken, category.list);
 
-router.get('/', verifyToken, user.list);
+router.get('/:id', verifyToken, category.detail);
 
-router.post('/login', user.login);
+router.delete('/:id', verifyToken, category.delete);
 
-router.post('/loginowner', user.login_owner);
-
-router.get('/logout', user.logout);
-
-router.get('/profile', verifyToken, user.profile);
-
-router.delete('/:id', verifyToken, user.user_delete);
+router.put('/:id', verifyToken, category.update);
 
 module.exports = router;
