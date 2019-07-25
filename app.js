@@ -12,6 +12,10 @@ var stores = require('./routes/store');
 var categories = require('./routes/category');
 var paymentTypes = require('./routes/paymentType');
 var rentWays = require('./routes/rentway');
+var products = require('./routes/product');
+var reviews = require('./routes/review');
+var favorites = require('./routes/favorite');
+var currencies = require('./routes/currency');
 
 var app = express();
 
@@ -49,6 +53,10 @@ app.use('/api/store', stores);
 app.use('/api/category', categories);
 app.use('/api/paymenttype', paymentTypes);
 app.use('/api/rentway', rentWays);
+app.use('/api/product', products);
+app.use('/api/review', reviews);
+app.use('/api/favorite', favorites);
+app.use('/api/currency', currencies);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
