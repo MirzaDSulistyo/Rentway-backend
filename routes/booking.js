@@ -7,7 +7,7 @@ var textForm = multer()
  * Configure JWT
  */
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var config = require('../config'); // get config file
+var config = require('../config/jwtConfig'); // get config file
 
 var booking = require('../controllers/booking');
 

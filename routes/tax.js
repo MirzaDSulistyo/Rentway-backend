@@ -4,7 +4,7 @@ var router = express.Router();
  * Configure JWT
  */
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var config = require('../config'); // get config file
+var config = require('../config/jwtConfig'); // get config file
 
 var taxes = require('../controllers/tax');
 
