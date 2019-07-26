@@ -3,11 +3,11 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var BookingSchema = new Schema({
-    store_id: {type: Schema.ObjectId, ref: 'Store', required: true},
-	rent_way_id: {type: Schema.ObjectId, ref: 'RentWay', required: true},
-	payment_id: {type: Schema.ObjectId, ref: 'Payment', required: true},
-	product_id: {type: Schema.ObjectId, ref: 'Product', required: true},
-	user_id: {type: Schema.ObjectId, ref: 'User', required: true},
+    store: {type: Schema.ObjectId, ref: 'Store', required: true},
+	rent_way: {type: Schema.ObjectId, ref: 'RentWay', required: true},
+	payment: {type: Schema.ObjectId, ref: 'Payment', required: true},
+	product: {type: Schema.ObjectId, ref: 'Product', required: true},
+	user: {type: Schema.ObjectId, ref: 'User', required: true},
     date: {type: String, required: false},
     amount: {type: Number, required: false},
     created_at: {type: Date},
@@ -15,7 +15,7 @@ var BookingSchema = new Schema({
 });
 
 // Virtual for store's URL
-FeeSchema.virtual('url')
+BookingSchema.virtual('url')
 .get(function () {
   return '/book/' + this._id;
 });

@@ -16,4 +16,4 @@ FeeSchema.virtual('url')
   return '/fees/' + this._id;
 });
 
-module.exports = mongoose.model('Fee', TaxSchema);
+module.exports = mongoose.model('Fee', FeeSchema);
