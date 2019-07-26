@@ -3,8 +3,8 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var AvailabilitySchema = new Schema({
-    store_id: {type: Schema.ObjectId, ref: 'Store', required: true},
-	dates: [{ type: String, required: true }],
+    store: {type: Schema.ObjectId, ref: 'Store', required: true},
+	dates: [{ type: Date, required: true }],
     created_at: {type: Date},
     updated_at: {type: Date, default: Date.now}
 });

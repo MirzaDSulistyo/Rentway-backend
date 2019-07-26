@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var multer  = require('multer')
+// text format
+var textForm = multer()
 /**
  * Configure JWT
  */
@@ -26,13 +29,13 @@ function verifyToken(req, res, next) {
 
 }
 
-router.post('/new', verifyToken, booking.create);
+router.post('/new', verifyToken, textForm.none(), booking.create);
 
 router.get('/', verifyToken, booking.list);
 
 //router.get('/:id', verifyToken, booking.detail);
 
-//router.delete('/:id', verifyToken, booking.delete);
+router.delete('/:id', verifyToken, booking.delete);
 
 //router.put('/:id', verifyToken, booking.update);
 

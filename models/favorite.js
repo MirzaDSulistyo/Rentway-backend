@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var FavoriteSchema = new Schema({
-    user_id: {type: Schema.ObjectId, ref: 'User', required: true},
+    user: {type: Schema.ObjectId, ref: 'User', required: true},
     product: {type: Schema.ObjectId, ref: 'Product', required: true},
     created_at: {type: Date},
     updated_at: {type: Date, default: Date.now}
