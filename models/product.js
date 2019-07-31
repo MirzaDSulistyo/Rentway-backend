@@ -20,6 +20,7 @@ var ProductSchema = new Schema({
     purchase_price: {type: Number, required: false},
     purchase_date: {type: Date, required: false},
     commission: {type: Number, required: true},
+    available: {type: Number, required: true},
     discount: {type: Number, required: false},
     notes: {type: String, required: false},
     rating: {type: Number, required: false},
