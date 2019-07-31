@@ -6,12 +6,6 @@ const bcrypt = require('bcryptjs');
 var async = require('async');
 const formidable = require('formidable');
 
-/**
- * Configure JWT
- */
-var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var config = require('../config'); // get config file
-
 var Store = require('../models/store');
 
 exports.create_post = function(req, res) {
