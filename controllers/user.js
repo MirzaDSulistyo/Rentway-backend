@@ -8,6 +8,12 @@ const {
 const bcrypt = require('bcryptjs');
 var async = require('async');
 
+/**
+ * Configure JWT
+ */
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var config = require('../config/jwtConfig'); // get config file
+
 var User = require('../models/user');
 var Store = require('../models/store');
 

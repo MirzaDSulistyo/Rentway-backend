@@ -4,6 +4,12 @@ const bcrypt = require('bcryptjs');
 var async = require('async');
 const formidable = require('formidable');
 
+/**
+ * Configure JWT
+ */
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var config = require('../config/jwtConfig'); // get config file
+
 var Tax = require('../models/tax');
 
 exports.create = function(req, res) {
