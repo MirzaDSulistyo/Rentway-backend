@@ -170,7 +170,7 @@ exports.profile =  function(req, res, next) {
       User.findById(req.userId).exec(callback);
     },
     stores: function(callback) {
-      Store.find({ user_id: req.userId }).exec(callback);
+      Store.find({ user: req.userId }).exec(callback);
     },
   }, function(err, results) {
     if (err) return res.status(500).send({ status: 500, message: "There was a problem finding the user." });
