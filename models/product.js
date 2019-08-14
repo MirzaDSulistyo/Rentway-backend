@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var ProductSchema = new Schema({
     store: {type: Schema.ObjectId, ref: 'Store', required: true},
-    name: {type: String, required: true, max: 100},
+    name: {type: String, required: true, max: 100, required: true},
     category: {type: Schema.ObjectId, ref: 'Category', required: true},
     rent_way: {type: Schema.ObjectId, ref: 'RentWay', required: true},
     photo: {type: String, required: false},

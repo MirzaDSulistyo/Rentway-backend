@@ -32,7 +32,7 @@ exports.create_post = function(req, res) {
     barcode: req.body.barcode,
     sku: req.body.sku,
     price: req.body.price,
-    purchase_date: purchaseDate,
+    //purchase_date: purchaseDate,
     special_price: req.body.special_price,
     discount: req.body.discount,
     commission: req.body.commission,
@@ -77,7 +77,9 @@ exports.list = function(req, res, next) {
 }
 
 exports.list_products = function(req, res, next) {
-  Product.find({store: req.params.id}, function (err, data) {
+  Product.find({store: req.params.id})
+  .populate('category')
+  .exec(function (err, data) {
     if (err) return res.status(500).send({ status: 500, message: "There was a problem finding list of products." });
     if (!data) return res.status(404).send({ status: 404, message: "No product found." });
     res.status(200).send({ status: 200, data: data });
@@ -100,6 +102,7 @@ exports.product_delete = function(req, res, next) {
 }
 
 exports.product_update = function(req, res, next) {
+  var photo = "https://i1.wp.com/thefrontline.org.uk/wp-content/uploads/2018/10/placeholder.jpg";
   var product = new Product({
     store_id : req.body.store_id,
     name: req.body.name,

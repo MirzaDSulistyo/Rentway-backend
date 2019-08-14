@@ -19,6 +19,7 @@ var currencies = require('./routes/currency');
 var taxes = require('./routes/tax');
 var fees = require('./routes/fee');
 var booking = require('./routes/booking');
+var dataMaster = require('./routes/dataMaster');
 
 var app = express();
 
@@ -63,6 +64,7 @@ app.use('/api/currency', currencies);
 app.use('/api/taxes', taxes);
 app.use('/api/fees', fees);
 app.use('/api/book', booking);
+app.use('/api/master', dataMaster);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
